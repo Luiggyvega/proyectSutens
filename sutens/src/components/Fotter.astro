@@ -4,7 +4,7 @@
 // pero adaptado para la marca SUTENS
 ---
 
-<footer id="sutens-footer" class="py-10 px-4 md:px-8 bg-[#1a1a1a] text-[#f2f2f2]">
+<footer id="sutens-footer" class="py-10 px-4 md:px-8 bg-[#1a1a1a] text-[#f2f2f2] &>div=[cursor-pointer]">
     <div class="container mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <!-- Columna 1: Seguridad y Marca -->
@@ -77,40 +77,3 @@
         </div>
     </div>
 </footer>
-
-<script>
-    // JavaScript para funcionalidad del footer
-    document.addEventListener('DOMContentLoaded', function() {
-        // Aquí se pueden agregar enlaces reales a las redes sociales
-        const socialLinks = {
-            facebook: 'https://facebook.com/sutens',
-            twitter: 'https://twitter.com/sutens',
-            instagram: 'https://instagram.com/sutens',
-            linkedin: 'https://linkedin.com/company/sutens'
-        };
-        
-        // Establecer enlaces
-        document.getElementById('facebook-link').href = socialLinks.facebook;
-        document.getElementById('twitter-link').href = socialLinks.twitter;
-        document.getElementById('instagram-link').href = socialLinks.instagram;
-        document.getElementById('linkedin-link').href = socialLinks.linkedin;
-        
-        console.log('Footer SUTENS cargado correctamente');
-    });
-</script>
-
-<style>
-    /* Estilos para el componente de footer */
-    #sutens-footer {
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-        line-height: 1.6;
-    }
-    
-    #sutens-footer a {
-        transition: color 0.3s ease;
-    }
-    
-    #sutens-footer a:hover {
-        color: #a8c6ff;
-    }
-</style>
