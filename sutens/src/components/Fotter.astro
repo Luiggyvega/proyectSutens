@@ -1,3 +1,116 @@
-<footer>
-    Este es el foter 
+---
+// Componente de Footer para SUTENS
+// Este componente está inspirado en el footer de Harvard
+// pero adaptado para la marca SUTENS
+---
+
+<footer id="sutens-footer" class="py-10 px-4 md:px-8 bg-[#1a1a1a] text-[#f2f2f2]">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <!-- Columna 1: Seguridad y Marca -->
+            <div id="security-brand-section">
+                <h3 class="text-lg font-semibold mb-4 pb-2 border-b border-[#a8c6ff]">Seguridad & Marca</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white">Reportar Infracción de Copyright</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Reportar Problema de Seguridad</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Aviso de Marca Registrada</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Sitio Web</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 2: Accesibilidad -->
+            <div id="accessibility-section">
+                <h3 class="text-lg font-semibold mb-4 pb-2 border-b border-[#a8c6ff]">Accesibilidad</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white">Accesibilidad Digital</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Declaración de Privacidad</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contacto -->
+            <div id="contact-section">
+                <h3 class="text-lg font-semibold mb-4 pb-2 border-b border-[#a8c6ff]">Mantente en Contacto</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white">Contactar SUTENS</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Mapas & Direcciones</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white">Empleos</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 4: Redes Sociales -->
+            <div id="social-media-section">
+                <h3 class="text-lg font-semibold mb-4 pb-2 border-b border-[#a8c6ff]">Síguenos</h3>
+                <p class="text-gray-300 mb-4">Conecta con nosotros en redes sociales</p>
+                <div class="flex space-x-4">
+                    <!-- Facebook -->
+                    <a href="#" id="facebook-link" class="social-icon w-9 h-9 rounded-full bg-[#2c2c2c] flex items-center justify-center text-white hover:bg-[#a8c6ff] transition-all">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <!-- Twitter -->
+                    <a href="#" id="twitter-link" class="social-icon w-9 h-9 rounded-full bg-[#2c2c2c] flex items-center justify-center text-white hover:bg-[#a8c6ff] transition-all">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="#" id="instagram-link" class="social-icon w-9 h-9 rounded-full bg-[#2c2c2c] flex items-center justify-center text-white hover:bg-[#a8c6ff] transition-all">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a href="#" id="linkedin-link" class="social-icon w-9 h-9 rounded-full bg-[#2c2c2c] flex items-center justify-center text-white hover:bg-[#a8c6ff] transition-all">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-700 my-8"></div>
+
+        <!-- Marca SUTENS y Derechos -->
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div id="sutens-brand" class="mb-4 md:mb-0">
+                <p class="text-xl font-bold text-white">SUTENS</p>
+                <p class="text-gray-400 text-sm">Sistema Unificado de Tenencias</p>
+            </div>
+            <div id="footer-bottom-text" class="text-gray-400 text-sm">
+                <p>2025 SUTENS. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
 </footer>
+
+<script>
+    // JavaScript para funcionalidad del footer
+    document.addEventListener('DOMContentLoaded', function() {
+        // Aquí se pueden agregar enlaces reales a las redes sociales
+        const socialLinks = {
+            facebook: 'https://facebook.com/sutens',
+            twitter: 'https://twitter.com/sutens',
+            instagram: 'https://instagram.com/sutens',
+            linkedin: 'https://linkedin.com/company/sutens'
+        };
+        
+        // Establecer enlaces
+        document.getElementById('facebook-link').href = socialLinks.facebook;
+        document.getElementById('twitter-link').href = socialLinks.twitter;
+        document.getElementById('instagram-link').href = socialLinks.instagram;
+        document.getElementById('linkedin-link').href = socialLinks.linkedin;
+        
+        console.log('Footer SUTENS cargado correctamente');
+    });
+</script>
+
+<style>
+    /* Estilos para el componente de footer */
+    #sutens-footer {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+    }
+    
+    #sutens-footer a {
+        transition: color 0.3s ease;
+    }
+    
+    #sutens-footer a:hover {
+        color: #a8c6ff;
+    }
+</style>
