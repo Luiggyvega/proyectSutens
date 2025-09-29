@@ -1,3 +1,58 @@
 <header>
-    este es el head
+<header class="fixed top-0 w-full z-50 bg-white/30 backdrop-blur-md shadow-sm">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    
+    <!-- Logo -->
+    <div class="flex items-center space-x-3">
+      <img src="/logo-sutenes.png" alt="SUTENES Logo" class="h-8">
+      <span class="text-xl font-semibold tracking-wide text-gray-800">SUTENES</span>
+    </div>
+
+    <!-- Navegación Desktop -->
+    <nav class="hidden md:flex items-center space-x-8 text-gray-800 font-medium">
+      <a href="#inicio" class="hover:text-blue-600 transition">Inicio</a>
+      <a href="#modulos" class="hover:text-blue-600 transition">Módulos</a>
+      <a href="#suplencias" class="hover:text-blue-600 transition">Gestión de Suplencias</a>
+      <a href="#reportes" class="hover:text-blue-600 transition">Reportes</a>
+      <a href="#contacto" class="hover:text-blue-600 transition">Contacto</a>
+    </nav>
+
+    <!-- Botón + Hamburguesa -->
+    <div class="flex items-center space-x-4">
+      <a href="#login" 
+         class="hidden md:inline-block px-5 py-2 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 transition">
+        Iniciar Sesión
+      </a>
+
+      <!-- Botón Hamburguesa -->
+      <button id="menu-btn" class="md:hidden flex flex-col space-y-1 focus:outline-none">
+        <span class="w-6 h-0.5 bg-gray-800"></span>
+        <span class="w-6 h-0.5 bg-gray-800"></span>
+        <span class="w-6 h-0.5 bg-gray-800"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menú Móvil -->
+  <div id="menu" class="hidden md:hidden flex-col items-center bg-white/95 backdrop-blur-md shadow-md py-4 space-y-4">
+    <a href="#inicio" class="text-gray-800 hover:text-blue-600 transition">Inicio</a>
+    <a href="#modulos" class="text-gray-800 hover:text-blue-600 transition">Módulos</a>
+    <a href="#suplencias" class="text-gray-800 hover:text-blue-600 transition">Gestión de Suplencias</a>
+    <a href="#reportes" class="text-gray-800 hover:text-blue-600 transition">Reportes</a>
+    <a href="#contacto" class="text-gray-800 hover:text-blue-600 transition">Contacto</a>
+    <a href="#login" class="px-5 py-2 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 transition">
+      Iniciar Sesión
+    </a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+</script>
+
 </header>
