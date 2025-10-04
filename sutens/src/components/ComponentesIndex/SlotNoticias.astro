@@ -1,0 +1,164 @@
+---
+// src/components/SlotNoticias.astro
+---
+
+<!-- Sección de Noticias con Slider Reutilizable -->
+---
+// src/components/SlotNoticias.astro
+---
+
+<!-- Sección de Noticias con Slider Reutilizable -->
+<section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <!-- Encabezado -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Últimas Noticias</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Mantente informado con las últimas novedades y comunicados de SUTENES</p>
+        </div>
+
+        <!-- Slider Container -->
+        <div class="relative">
+            <!-- Slider -->
+            <div class="overflow-hidden">
+                <div id="news-slider" class="flex transition-transform duration-500 ease-in-out">
+                    <!-- Slot para las noticias -->
+                    <slot />
+                </div>
+            </div>
+
+            <!-- Botones de navegación -->
+            <button id="prev-btn" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-emerald-600 hover:text-emerald-700 hover:shadow-xl transition-all duration-300 z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <button id="next-btn" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-emerald-600 hover:text-emerald-700 hover:shadow-xl transition-all duration-300 z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Indicadores -->
+        <div id="slider-dots" class="flex justify-center space-x-2 mt-8">
+            <!-- Los dots se generan automáticamente con JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para el slider responsive
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('news-slider');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const dotsContainer = document.getElementById('slider-dots');
+            
+            const newsItems = slider.children;
+            let currentSlide = 0;
+            let slidesPerView = 1; // Por defecto para móvil
+            
+            // Determinar slides por vista según el ancho de pantalla
+            function getSlidesPerView() {
+                const width = window.innerWidth;
+                if (width >= 1024) return 3; // lg
+                if (width >= 768) return 2;  // md
+                return 1;                    // sm
+            }
+            
+            // Calcular el ancho correcto para cada slide
+            function calculateSlideWidth() {
+                slidesPerView = getSlidesPerView();
+                const totalSlides = newsItems.length;
+                
+                // Ajustar el ancho de cada slide
+                Array.from(newsItems).forEach(slide => {
+                    slide.style.width = `${100 / slidesPerView}%`;
+                });
+                
+                return Math.ceil(totalSlides / slidesPerView);
+            }
+            
+            let totalSlideGroups = calculateSlideWidth();
+            
+            // Crear dots dinámicamente
+            function createDots() {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalSlideGroups; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'slider-dot w-3 h-3 rounded-full bg-emerald-300 hover:bg-emerald-500 transition-colors duration-300';
+                    dot.addEventListener('click', () => {
+                        currentSlide = i;
+                        updateSlider();
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            
+            function updateSlider() {
+                const translateX = currentSlide * 100;
+                slider.style.transform = `translateX(-${translateX}%)`;
+                
+                // Actualizar dots
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('bg-emerald-600', index === currentSlide);
+                    dot.classList.toggle('bg-emerald-300', index !== currentSlide);
+                });
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlideGroups) % totalSlideGroups;
+                updateSlider();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlideGroups;
+                updateSlider();
+            });
+            
+            // Recalcular en resize
+            window.addEventListener('resize', () => {
+                totalSlideGroups = calculateSlideWidth();
+                createDots();
+                currentSlide = 0;
+                updateSlider();
+            });
+            
+            // Auto-slide cada 5 segundos
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlideGroups;
+                updateSlider();
+            }, 5000);
+            
+            // Inicializar
+            createDots();
+            updateSlider();
+        });
+    </script>
+</section>
+
+<style>
+    /* Estilos para asegurar el responsive */
+    #news-slider {
+        display: flex;
+        width: 100%;
+    }
+    
+    #news-slider > * {
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+    
+    /* Asegurar que las tarjetas tengan el mismo alto */
+    .news-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .news-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
