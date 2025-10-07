@@ -1,9 +1,8 @@
 // @ts-check
-// astro.config.mjs
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
-import vercel from '@astrojs/vercel/serverless';
+import vercel from "@astrojs/vercel"; // ✅ sin /server
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,6 +10,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [icon()],
-  output: 'server',
-  adapter: vercel(),
+  output: "server",
+  adapter: vercel({ mode: "server" }), // ✅ modo explícito
 });
+
