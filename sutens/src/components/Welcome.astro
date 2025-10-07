@@ -4,25 +4,21 @@ import SlotNoticias from "./ComponentesIndex/SlotNoticias.astro";
 ---
 
 <!-- Tu sección de bienvenida existente -->
-<div class="h-[80vh] bg-[#F5F5F5]">
+<div class="h-[85vh]">
 	<Bienvenido></Bienvenido>
 </div>
 
-<!-- Tu sección "Lo más reciente" -->
-
-<!-- Slider de noticias - AQUÍ VA EL COMPONENTE -->
 <SlotNoticias>
-    <!-- Noticia 1 -->
-    <div class="w-full px-4">
-        <div class="news-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden">
+    <div class="w-full px-3">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden h-full flex flex-col">
             <div class="h-48 bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center text-white">
                 <span class="text-lg font-semibold">Imagen Noticia 1</span>
             </div>
-            <div class="news-content p-6">
+            <div class="p-6 flex flex-col flex-grow">
                 <span class="text-emerald-600 text-sm font-medium">15 Mar 2024</span>
                 <h3 class="text-xl font-bold text-gray-800 mt-2 mb-3">Nuevo Convenio Colectivo</h3>
                 <p class="text-gray-600 mb-4 flex-grow">Se ha firmado un nuevo convenio colectivo que beneficia a todos los afiliados...</p>
-                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center mt-auto">
+                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center">
                     Leer más
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -32,17 +28,16 @@ import SlotNoticias from "./ComponentesIndex/SlotNoticias.astro";
         </div>
     </div>
 
-    <!-- Noticia 2 -->
-    <div class="w-full px-4">
-        <div class="news-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden">
+    <div class="w-full px-3">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden h-full flex flex-col">
             <div class="h-48 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center text-white">
                 <span class="text-lg font-semibold">Imagen Noticia 2</span>
             </div>
-            <div class="news-content p-6">
+            <div class="p-6 flex flex-col flex-grow">
                 <span class="text-emerald-600 text-sm font-medium">12 Mar 2024</span>
                 <h3 class="text-xl font-bold text-gray-800 mt-2 mb-3">Taller de Capacitación</h3>
                 <p class="text-gray-600 mb-4 flex-grow">Inscríbete en nuestro próximo taller de desarrollo profesional gratuito...</p>
-                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center mt-auto">
+                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center">
                     Leer más
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -52,17 +47,16 @@ import SlotNoticias from "./ComponentesIndex/SlotNoticias.astro";
         </div>
     </div>
 
-    <!-- Noticia 3 -->
-    <div class="w-full px-4">
-        <div class="news-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden">
-            <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center text-white">
-                <span class="text-lg font-semibold">Imagen Noticia 3</span>
+    <div class="w-full px-3">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden h-full flex flex-col">
+            <div class="h-48 bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center text-white">
+                <span class="text-lg font-semibold">Imagen Noticia 1</span>
             </div>
-            <div class="news-content p-6">
-                <span class="text-emerald-600 text-sm font-medium">10 Mar 2024</span>
-                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-3">Asamblea General</h3>
-                <p class="text-gray-600 mb-4 flex-grow">Convocatoria a asamblea general extraordinaria para el próximo mes...</p>
-                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center mt-auto">
+            <div class="p-6 flex flex-col flex-grow">
+                <span class="text-emerald-600 text-sm font-medium">15 Mar 2024</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-3">Nuevo Convenio Colectivo</h3>
+                <p class="text-gray-600 mb-4 flex-grow">Se ha firmado un nuevo convenio colectivo que beneficia a todos los afiliados...</p>
+                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center">
                     Leer más
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -71,17 +65,17 @@ import SlotNoticias from "./ComponentesIndex/SlotNoticias.astro";
             </div>
         </div>
     </div>
-	<!-- Noticia 4 -->
-    <div class="w-full px-4">
-        <div class="news-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden">
-            <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center text-white">
-                <span class="text-lg font-semibold">Imagen Noticia 4</span>
+
+    <div class="w-full px-3">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden h-full flex flex-col">
+            <div class="h-48 bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center text-white">
+                <span class="text-lg font-semibold">Imagen Noticia 1</span>
             </div>
-            <div class="news-content p-6">
-                <span class="text-emerald-600 text-sm font-medium">10 Mar 2024</span>
-                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-3">Asamblea General</h3>
-                <p class="text-gray-600 mb-4 flex-grow">Convocatoria a asamblea general extraordinaria para el próximo mes...</p>
-                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center mt-auto">
+            <div class="p-6 flex flex-col flex-grow">
+                <span class="text-emerald-600 text-sm font-medium">15 Mar 2024</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-3">Nuevo Convenio Colectivo</h3>
+                <p class="text-gray-600 mb-4 flex-grow">Se ha firmado un nuevo convenio colectivo que beneficia a todos los afiliados...</p>
+                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center">
                     Leer más
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -90,17 +84,17 @@ import SlotNoticias from "./ComponentesIndex/SlotNoticias.astro";
             </div>
         </div>
     </div>
-	<!-- Noticia 5 -->
-    <div class="w-full px-4">
-        <div class="news-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden">
-            <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center text-white">
-                <span class="text-lg font-semibold">Imagen Noticia 5</span>
+
+    <div class="w-full px-3">
+        <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden h-full flex flex-col">
+            <div class="h-48 bg-gradient-to-r from-emerald-500 to-green-600 flex items-center justify-center text-white">
+                <span class="text-lg font-semibold">Imagen Noticia 1</span>
             </div>
-            <div class="news-content p-6">
-                <span class="text-emerald-600 text-sm font-medium">10 Mar 2024</span>
-                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-3">Asamblea General</h3>
-                <p class="text-gray-600 mb-4 flex-grow">Convocatoria a asamblea general extraordinaria para el próximo mes...</p>
-                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center mt-auto">
+            <div class="p-6 flex flex-col flex-grow">
+                <span class="text-emerald-600 text-sm font-medium">15 Mar 2024</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-2 mb-3">Nuevo Convenio Colectivo</h3>
+                <p class="text-gray-600 mb-4 flex-grow">Se ha firmado un nuevo convenio colectivo que beneficia a todos los afiliados...</p>
+                <a href="#" class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300 flex items-center">
                     Leer más
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
@@ -109,6 +103,7 @@ import SlotNoticias from "./ComponentesIndex/SlotNoticias.astro";
             </div>
         </div>
     </div>
+
 </SlotNoticias>
 
 <style>

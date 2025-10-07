@@ -3,11 +3,6 @@
 ---
 
 <!-- Sección de Noticias con Slider Reutilizable -->
----
-// src/components/SlotNoticias.astro
----
-
-<!-- Sección de Noticias con Slider Reutilizable -->
 <section class="py-16 bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-6xl mx-auto px-6">
         <!-- Encabezado -->
@@ -26,13 +21,13 @@
                 </div>
             </div>
 
-            <!-- Botones de navegación -->
-            <button id="prev-btn" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-emerald-600 hover:text-emerald-700 hover:shadow-xl transition-all duration-300 z-10">
+            <!-- Botones de navegación - Solo mostrar si hay más de 1 grupo -->
+            <button id="prev-btn" class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-emerald-600 hover:text-emerald-700 hover:shadow-xl transition-all duration-300 z-10 opacity-0 pointer-events-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
             </button>
-            <button id="next-btn" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-emerald-600 hover:text-emerald-700 hover:shadow-xl transition-all duration-300 z-10">
+            <button id="next-btn" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-emerald-600 hover:text-emerald-700 hover:shadow-xl transition-all duration-300 z-10 opacity-0 pointer-events-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -46,119 +41,145 @@
     </div>
 
     <script>
-        // JavaScript para el slider responsive
+        // JavaScript simplificado para el slider
         document.addEventListener('DOMContentLoaded', function() {
             const slider = document.getElementById('news-slider');
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             const dotsContainer = document.getElementById('slider-dots');
             
-            const newsItems = slider.children;
-            let currentSlide = 0;
-            let slidesPerView = 1; // Por defecto para móvil
+            if (!slider) return;
             
-            // Determinar slides por vista según el ancho de pantalla
-            function getSlidesPerView() {
+            const slides = Array.from(slider.children);
+            let currentIndex = 0;
+            let slidesToShow = 1;
+            
+            function updateSlidesToShow() {
                 const width = window.innerWidth;
-                if (width >= 1024) return 3; // lg
-                if (width >= 768) return 2;  // md
-                return 1;                    // sm
+                if (width >= 1024) {
+                    slidesToShow = 3;
+                } else if (width >= 768) {
+                    slidesToShow = 2;
+                } else {
+                    slidesToShow = 1;
+                }
+                return slidesToShow;
             }
             
-            // Calcular el ancho correcto para cada slide
-            function calculateSlideWidth() {
-                slidesPerView = getSlidesPerView();
-                const totalSlides = newsItems.length;
+            function setupSlider() {
+                const slidesToShow = updateSlidesToShow();
+                const totalGroups = Math.ceil(slides.length / slidesToShow);
                 
-                // Ajustar el ancho de cada slide
-                Array.from(newsItems).forEach(slide => {
-                    slide.style.width = `${100 / slidesPerView}%`;
+                // Configurar ancho de cada slide
+                slides.forEach(slide => {
+                    slide.style.width = `${100 / slidesToShow}%`;
+                    slide.style.flexShrink = '0';
                 });
                 
-                return Math.ceil(totalSlides / slidesPerView);
-            }
-            
-            let totalSlideGroups = calculateSlideWidth();
-            
-            // Crear dots dinámicamente
-            function createDots() {
+                // Configurar botones de navegación
+                if (totalGroups > 1) {
+                    prevBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    nextBtn.classList.remove('opacity-0', 'pointer-events-none');
+                } else {
+                    prevBtn.classList.add('opacity-0', 'pointer-events-none');
+                    nextBtn.classList.add('opacity-0', 'pointer-events-none');
+                }
+                
+                // Configurar dots
                 dotsContainer.innerHTML = '';
-                for (let i = 0; i < totalSlideGroups; i++) {
+                for (let i = 0; i < totalGroups; i++) {
                     const dot = document.createElement('button');
-                    dot.className = 'slider-dot w-3 h-3 rounded-full bg-emerald-300 hover:bg-emerald-500 transition-colors duration-300';
-                    dot.addEventListener('click', () => {
-                        currentSlide = i;
-                        updateSlider();
-                    });
+                    dot.className = `w-3 h-3 rounded-full transition-colors duration-300 ${i === 0 ? 'bg-emerald-600' : 'bg-emerald-300'}`;
+                    dot.addEventListener('click', () => goToSlide(i));
                     dotsContainer.appendChild(dot);
                 }
+                
+                updateSlider();
+            }
+            
+            function goToSlide(index) {
+                const slidesToShow = updateSlidesToShow();
+                const totalGroups = Math.ceil(slides.length / slidesToShow);
+                currentIndex = Math.max(0, Math.min(index, totalGroups - 1));
+                updateSlider();
             }
             
             function updateSlider() {
-                const translateX = currentSlide * 100;
+                const translateX = currentIndex * 100;
                 slider.style.transform = `translateX(-${translateX}%)`;
                 
                 // Actualizar dots
-                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                const dots = dotsContainer.querySelectorAll('button');
                 dots.forEach((dot, index) => {
-                    dot.classList.toggle('bg-emerald-600', index === currentSlide);
-                    dot.classList.toggle('bg-emerald-300', index !== currentSlide);
+                    dot.className = `w-3 h-3 rounded-full transition-colors duration-300 ${index === currentIndex ? 'bg-emerald-600' : 'bg-emerald-300'}`;
                 });
             }
             
+            // Event listeners
             prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + totalSlideGroups) % totalSlideGroups;
+                const slidesToShow = updateSlidesToShow();
+                const totalGroups = Math.ceil(slides.length / slidesToShow);
+                currentIndex = (currentIndex - 1 + totalGroups) % totalGroups;
                 updateSlider();
             });
             
             nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % totalSlideGroups;
+                const slidesToShow = updateSlidesToShow();
+                const totalGroups = Math.ceil(slides.length / slidesToShow);
+                currentIndex = (currentIndex + 1) % totalGroups;
                 updateSlider();
+            });
+            
+            // Auto-slide
+            let autoSlideInterval = setInterval(() => {
+                const slidesToShow = updateSlidesToShow();
+                const totalGroups = Math.ceil(slides.length / slidesToShow);
+                if (totalGroups > 1) {
+                    currentIndex = (currentIndex + 1) % totalGroups;
+                    updateSlider();
+                }
+            }, 5000);
+            
+            // Pausar auto-slide al hover
+            slider.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+            slider.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(() => {
+                    const slidesToShow = updateSlidesToShow();
+                    const totalGroups = Math.ceil(slides.length / slidesToShow);
+                    if (totalGroups > 1) {
+                        currentIndex = (currentIndex + 1) % totalGroups;
+                        updateSlider();
+                    }
+                }, 5000);
             });
             
             // Recalcular en resize
-            window.addEventListener('resize', () => {
-                totalSlideGroups = calculateSlideWidth();
-                createDots();
-                currentSlide = 0;
-                updateSlider();
-            });
-            
-            // Auto-slide cada 5 segundos
-            setInterval(() => {
-                currentSlide = (currentSlide + 1) % totalSlideGroups;
-                updateSlider();
-            }, 5000);
+            window.addEventListener('resize', setupSlider);
             
             // Inicializar
-            createDots();
-            updateSlider();
+            setupSlider();
         });
     </script>
 </section>
 
 <style>
-    /* Estilos para asegurar el responsive */
+    /* Estilos base para el slider */
     #news-slider {
         display: flex;
-        width: 100%;
+        transition: transform 0.5s ease-in-out;
     }
     
-    #news-slider > * {
-        flex-shrink: 0;
-        transition: transform 0.3s ease;
-    }
-    
-    /* Asegurar que las tarjetas tengan el mismo alto */
-    .news-card {
+    /* Asegurar que las tarjetas tengan altura consistente */
+    .h-full {
         height: 100%;
-        display: flex;
-        flex-direction: column;
     }
     
-    .news-content {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
+    /* Ocultar botones cuando no hay necesidad de navegación */
+    .opacity-0 {
+        opacity: 0;
+    }
+    
+    .pointer-events-none {
+        pointer-events: none;
     }
 </style>
